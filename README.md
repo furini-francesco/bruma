@@ -127,7 +127,7 @@ http://localhost:8080/health
 ## Esempio di workload
 
 ```yaml
-apiVersion: bruma.io/v1alpha1
+apiVersion: bruma.io/v1
 kind: Workload
 metadata:
   name: demo-api
