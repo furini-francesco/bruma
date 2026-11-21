@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  repository: bruma/demo-api
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
+resources: {}
+
+autoscaling: {}
