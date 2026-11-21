@@ -15,3 +15,11 @@ This document describes the planned architecture of Bruma.
 - `platform/` contains runtime and deployment assets
 - `infra/` contains infrastructure modules and environment definitions
 - `docs/` contains project documentation
+
+## Workload YAML
+
+- JSON Schema
+- validatore Python
+- valori per Helm
+- chart app-runtime
+- Kubernetes/Kind
