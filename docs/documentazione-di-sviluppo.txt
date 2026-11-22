@@ -1,0 +1,165 @@
+Concetti principali della struttura del repository:
+
+platform\schema\workload.schema.json: 
+    - Il file workload.schema.json definisce il contratto del formato Workload.
+
+platform/examples/demo_api_local.yaml: 
+    - definisce un esempio di yaml che l'utente utilizzerà per deployare la sua applicazione, 
+    conforme al workload.template.json definito
+
+- Repository principale
+README.md
+Presenta il progetto, i suoi obiettivi e le informazioni principali per iniziare.
+
+LICENSE
+Definisce i termini legali con cui il progetto può essere utilizzato e distribuito.
+
+.gitignore
+Indica quali file Git deve ignorare, come configurazioni locali, ambienti Python o stato temporaneo di Terraform.
+
+Makefile
+Contiene comandi semplici per automatizzare operazioni frequenti, come test, build Docker e deploy locale.
+
+.gitlab-ci.yml
+Definisce la pipeline di integrazione e distribuzione automatica su GitLab.
+
+
+- Applicazione demo
+demo-api
+Contiene il codice e la configurazione dell'applicazione utilizzata per dimostrare il funzionamento di Bruma.
+
+Dockerfile
+Costruisce l'immagine container dell'applicazione demo.
+
+src
+Contiene il codice sorgente, come endpoint, logica applicativa e health check.
+
+tests
+Contiene i test automatici che verificano il comportamento dell'applicazione.
+
+/health
+Endpoint utilizzato da Kubernetes per verificare che l'applicazione sia funzionante.
+
+
+- Validazione
+Validatore Python
+Legge il file YAML, lo converte in dati Python e verifica che rispetti workload.schema.json.
+
+Se il formato non è valido, blocca il processo e restituisce un errore comprensibile.
+
+JSON Schema
+È il linguaggio utilizzato per descrivere le regole del formato YAML.
+
+Serve a validare automaticamente campi obbligatori, tipi di dato, valori ammessi e proprietà sconosciute.
+
+
+- Helm e runtime Kubernetes
+app-runtime
+Contiene il chart Helm riutilizzabile con cui Bruma genera le risorse Kubernetes.
+
+Chart.yaml
+Contiene i metadati del chart Helm, come nome, descrizione e versione.
+
+values.yaml
+Contiene i valori predefiniti del chart.
+
+Esempi: numero di repliche, immagine container, porte e risorse.
+
+templates/deployment.yaml
+Definisce come Kubernetes deve creare e gestire i pod dell'applicazione.
+
+templates/service.yaml
+Definisce come rendere raggiungibile l'applicazione dalla rete interna del cluster.
+
+templates/ingress.yaml
+In futuro può definire come esporre l'applicazione dall'esterno del cluster.
+
+templates/serviceaccount.yaml
+In futuro può definire l'identità Kubernetes utilizzata dall'applicazione.
+
+templates/configmap.yaml
+In futuro può gestire configurazioni non sensibili dell'applicazione.
+
+
+
+- Kubernetes e Kind
+Kubernetes
+Sistema che esegue e gestisce le applicazioni sotto forma di container.
+
+Pod
+L'unità base di Kubernetes. Contiene uno o più container collegati tra loro.
+
+Deployment
+Indica a Kubernetes come creare e aggiornare i pod dell'applicazione.
+
+Service
+Fornisce un indirizzo stabile per raggiungere i pod.
+
+Ingress
+Gestisce l'accesso HTTP dall'esterno del cluster.
+
+Kind
+Strumento che crea un cluster Kubernetes locale usando Docker.
+
+kubectl
+Comando principale per ispezionare e gestire un cluster Kubernetes.
+
+Helm
+Strumento che genera e installa risorse Kubernetes a partire da template e valori configurabili.
+
+
+
+- Infrastruttura locale
+local
+Contiene la configurazione dell'ambiente locale gestita con Terraform oppure OpenTofu.
+
+main.tf
+Definisce le risorse principali dell'ambiente.
+
+variables.tf
+Definisce i parametri configurabili dell'infrastruttura.
+
+outputs.tf
+Espone informazioni utili al termine dell'esecuzione dell'infrastruttura.
+
+modules
+In futuro conterrà moduli riutilizzabili per creare ambienti e risorse.
+
+
+- Osservabilità
+Prometheus
+Raccoglie le metriche esposte dall'applicazione e da Kubernetes.
+
+Grafana
+Visualizza le metriche in dashboard leggibili.
+
+Metriche applicative
+Informazioni sullo stato dell'applicazione, come richieste, errori e tempi di risposta.
+
+Health check
+Verifica periodica che l'applicazione sia pronta e operativa.
+
+
+- Sicurezza
+Trivy
+Scanner che controlla vulnerabilità nelle immagini container.
+
+Checkov
+Analizza i file Terraform/OpenTofu alla ricerca di configurazioni e pratiche insicure.
+
+Security scan
+Processo che verifica le immagini e l'infrastruttura prima del deployment.
+
+
+- CI/CD
+GitLab CI/CD
+Esegue automaticamente test, build, sicurezza e deployment quando il codice viene modificato.
+
+Pipeline
+Sequenza ordinata di operazioni, come lint, test, build, scan e deploy.
+
+Smoke test
+Controllo rapido eseguito dopo il deployment per verificare che l'applicazione risponda.
+
+Rollback
+Procedura che ripristina la versione precedente quando il nuovo deployment non funziona.

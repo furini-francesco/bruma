@@ -1,4 +1,7 @@
 # Getting Started
+Il primo passo consiste nello scrivere un file Workload YAML.
+Bruma lo validerà rispetto a platform/schema/workload.schema.json.
+Solo un workload valido potrà essere convertito in risorse Kubernetes.
 
 ## Prerequisites
 

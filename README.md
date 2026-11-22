@@ -1,3 +1,17 @@
+ <p align="center">
+  <img src="assets/bruma-cover.png" alt="Bruma — Navigating cloud-native infrastructure through the fog" width="100%">
+</p>
+
+<h1 align="center">Bruma</h1>
+
+<p align="center">
+  <em>Navigate the complexity of cloud-native infrastructure.</em>
+</p>
+
+<p align="center">
+  A local-first Kubernetes delivery platform.
+</p>
+
 # Bruma
 
 > Da una definizione dichiarativa a un deployment Kubernetes sicuro, osservabile e riproducibile.
@@ -113,7 +127,7 @@ http://localhost:8080/health
 ## Esempio di workload
 
 ```yaml
-apiVersion: bruma.io/v1alpha1
+apiVersion: bruma.io/v1
 kind: Workload
 metadata:
   name: demo-api
@@ -175,6 +189,21 @@ bruma/
 | AWS | Opzionale, non ancora implementato |
 | GCP | Opzionale, non ancora implementato |
 | Azure | Opzionale, non ancora implementato |
+
+Feature da implementare:
+- partenza: definizione contratto YAML
+  - Decidere dove salvare lo schema.
+  - Creare un esempio minimo e valido.
+  - Definire i campi obbligatori.
+  - Imporre vincoli su replica, risorse e ambiente.
+  - Documentare il contratto.
+  - Verificare lo YAML con JSON Schema.
+- API demo con endpoint /health
+- dockerfile funzionante
+- test automatizzato dell'health check
+- deployment con Helm su un cluster Kind
+- comando make smoke-test che verifica l'applicazione risponda
+- singola demo locale completa 
 
 ## Limiti noti
 
