@@ -18,7 +18,7 @@ Bruma espone agli utenti un formato dichiarativo chiamato `Workload`.
 Un esempio è:
 
 ```yaml
-apiVersion: bruma.io/v1alpha1
+apiVersion: bruma.io/v1
 kind: Workload
 metadata:
   name: demo-api
