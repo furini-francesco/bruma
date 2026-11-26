@@ -42,24 +42,10 @@ def split_image(image: str) -> tuple[str, str]:
 
 def workload_to_helm_values(workload: dict[str, Any]) -> dict[str, Any]:
     spec = workload["spec"]
+    repository, tag = split_image(spec["image"])
 
-    unsupported_features = []
     ingress = spec.get("ingress", {})
     observability = spec.get("observability", {})
-
-    if ingress.get("enabled", False):
-        unsupported_features.append("ingress")
-    if observability.get("enabled", False):
-        unsupported_features.append("observability")
-
-    if unsupported_features:
-        features = ", ".join(unsupported_features)
-        raise ValueError(
-            f"Il chart app-runtime non implementa ancora: {features}. "
-            "Completa il chart prima di convertire un workload che li abilita."
-        )
-
-    repository, tag = split_image(spec["image"])
 
     values: dict[str, Any] = {
         "replicaCount": spec["replicas"],
@@ -67,7 +53,16 @@ def workload_to_helm_values(workload: dict[str, Any]) -> dict[str, Any]:
             "repository": repository,
             "tag": tag,
         },
+        "ingress": {
+            "enabled": ingress.get("enabled", False),
+        },
+        "observability": {
+            "enabled": observability.get("enabled", True),
+        },
     }
+
+    if "host" in ingress:
+        values["ingress"]["host"] = ingress["host"]
 
     if "resources" in spec:
         values["resources"] = spec["resources"]

@@ -12,4 +12,14 @@ service:
 
 resources: {}
 
+ingress:
+  enabled: false
+  host: ""
+  path: /
+  pathType: Prefix
+
+observability:
+  enabled: true
+  metricsPath: /metrics
+
 autoscaling: {}
