@@ -1,0 +1,16 @@
+replicaCount: 2
+image:
+  repository: bruma/demo-api
+  tag: latest
+ingress:
+  enabled: true
+  host: demo.local
+observability:
+  enabled: true
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi

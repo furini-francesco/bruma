@@ -216,6 +216,7 @@ Feature da implementare:
 
 - [Architettura](docs/architecture.md)
 - [Avvio rapido](docs/getting-started.md)
+- [Guida all'avvio locale](docs/avvio-locale.md)
 - [Sviluppo locale](docs/local-development.md)
 - [CI/CD](docs/ci-cd.md)
 - [Sicurezza](docs/security.md)
